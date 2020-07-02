@@ -16,13 +16,13 @@ import Tab3 from './src/screens/tabs/tab3';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
-// import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-// import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
-// const BottomTabs = createMaterialBottomTabNavigator();
-// const TopTabs = createMaterialTopTabNavigator();
+const BottomTabs = createMaterialBottomTabNavigator();
+const TopTabs = createMaterialTopTabNavigator();
 
 
 class App extends Component {
@@ -32,9 +32,32 @@ class App extends Component {
       <Stack.Navigator>
         <Stack.Screen name='Feed' component={Feed} />
         <Stack.Screen name='Details' component={Details} />
+        <Stack.Screen name='Bottom Tabs' children={this.createBottomTabs} />
+        <Stack.Screen name='Top Tabs' children={this.createTopTabs} />
       </Stack.Navigator>
     )
   }
+
+  createTopTabs = () => {
+    return (
+      <TopTabs.Navigator>
+        <TopTabs.Screen name='Tab1' component={Tab1} />
+        <TopTabs.Screen name='Tab2' component={Tab2} />
+        <TopTabs.Screen name='Tab3' component={Tab3} />
+      </TopTabs.Navigator>
+    )
+  }
+
+  createBottomTabs = () => {
+    return (
+      <BottomTabs.Navigator>
+        <BottomTabs.Screen name='Tab1' component={Tab1} />
+        <BottomTabs.Screen name='Tab2' component={Tab2} />
+        <BottomTabs.Screen name='Tab3' component={Tab3} />
+      </BottomTabs.Navigator>
+    )
+  }
+
   render() {
   return (
     <NavigationContainer>
