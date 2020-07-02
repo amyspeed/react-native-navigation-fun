@@ -30,8 +30,8 @@ class App extends Component {
   createHomeStack = () => {
     return (
       <Stack.Navigator>
-        <Stack.Screen name='feed' component={Feed} />
-        {/* <Stack.Screen name='detail' component={Details} /> */}
+        <Stack.Screen name='Feed' component={Feed} />
+        <Stack.Screen name='Details' component={Details} />
       </Stack.Navigator>
     )
   }
@@ -42,7 +42,7 @@ class App extends Component {
         <Drawer.Screen name="Home" children={this.createHomeStack} />
         <Drawer.Screen name="Contacts" component={Contacts} />
         <Drawer.Screen name="About" component={About} />
-        <Drawer.Screen name="bio" component={Bio} />
+        <Drawer.Screen name="Bio" component={Bio} />
       </Drawer.Navigator>
 
     </NavigationContainer>
