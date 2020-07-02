@@ -30,7 +30,15 @@ class App extends Component {
   createHomeStack = () => {
     return (
       <Stack.Navigator>
-        <Stack.Screen name='Feed' component={Feed} />
+        <Stack.Screen 
+          name='Feed' 
+          component={Feed} 
+          options={{ 
+            title: 'Home',
+            headerStyle: { backgroundColor: '#000000'},
+            headerTintColor: '#FFFFFF'
+          }}
+        />
         <Stack.Screen name='Details' component={Details} />
         <Stack.Screen name='Bottom Tabs' children={this.createBottomTabs} />
         <Stack.Screen name='Top Tabs' children={this.createTopTabs} />
@@ -41,7 +49,7 @@ class App extends Component {
   createTopTabs = () => {
     return (
       <TopTabs.Navigator>
-        <TopTabs.Screen name='Tab1' component={Tab1} />
+        <TopTabs.Screen name='Tab1' component={Tab1} options={{ title: "Title1"}} />
         <TopTabs.Screen name='Tab2' component={Tab2} />
         <TopTabs.Screen name='Tab3' component={Tab3} />
       </TopTabs.Navigator>
