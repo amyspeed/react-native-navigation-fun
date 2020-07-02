@@ -1,114 +1,53 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
+import 'react-native-gesture-handler';
+import React, { Component } from 'react';
 
-import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+import Feed from './src/feed';
+import Details from './src/details';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import About from './src/screens/drawer/about';
+import Bio from './src/screens/drawer/bio';
+import Contacts from './src/screens/drawer/contacts';
 
-const App: () => React$Node = () => {
+import Tab1 from './src/screens/tabs/tab1';
+import Tab2 from './src/screens/tabs/tab2';
+import Tab3 from './src/screens/tabs/tab3';
+
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createStackNavigator } from '@react-navigation/stack';
+// import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+// import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+
+const Drawer = createDrawerNavigator();
+const Stack = createStackNavigator();
+// const BottomTabs = createMaterialBottomTabNavigator();
+// const TopTabs = createMaterialTopTabNavigator();
+
+
+class App extends Component {
+
+  createHomeStack = () => {
+    return (
+      <Stack.Navigator>
+        <Stack.Screen name='feed' component={Feed} />
+        {/* <Stack.Screen name='detail' component={Details} /> */}
+      </Stack.Navigator>
+    )
+  }
+  render() {
   return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </>
-  );
-};
+    <NavigationContainer>
+      <Drawer.Navigator>
+        <Drawer.Screen name="Home" children={this.createHomeStack} />
+        <Drawer.Screen name="Contacts" component={Contacts} />
+        <Drawer.Screen name="About" component={About} />
+        <Drawer.Screen name="bio" component={Bio} />
+      </Drawer.Navigator>
 
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
-});
+    </NavigationContainer>
+  )
+  }
+}
 
 export default App;
